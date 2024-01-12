@@ -1,0 +1,46 @@
+﻿body {
+    text-align: center;
+    background-color: lightgray;
+    font-size: 16px;
+    font-weight: bold;
+}
+#container{
+    margin: 0 auto;
+}
+#Row2 {
+    margin-top: 10%;
+}
+
+#FormCol {
+    margin-top: 10%;
+}
+
+    #FormCol img {
+        height:200px;
+        width:200px;
+    }
+    #FormCol p {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+    }
+
+    #FormCol label {
+        min-width: 120px;
+        margin-right: 10px;
+    }
+
+    #FormCol input {
+        flex: 1;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    #FormCol button {
+        margin-top: 15px;
+    }
+
+    #EmptyDiv {
+    font-size: 18px;
+    font-weight: bold;
+}

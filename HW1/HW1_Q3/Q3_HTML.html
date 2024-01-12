@@ -1,0 +1,60 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Q3</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!--CSS:-->
+    <link href="Q3_CSS.css" rel="stylesheet" />
+    <!--JS:-->
+    <script src="Q3_JS.js"></script>
+
+
+</head>
+<body>
+    <div class="container">
+
+        <div class="row" id="Row1">
+
+            <div class="col" id="FormCol">
+                <img src="Clock WithoutBG.png" />
+                <h2>what's the time?</h2>
+                <p>
+                    <label>Hours:</label>
+                    <input id="InpHours" type="number" min="0" max="24" name="" value="" placeholder="Please enter hours" />
+                </p>
+
+                <p>
+                    <label>Minutes:</label>
+                    <input id="InpMinutes" type="number" min="0" max="60" name="" value="" placeholder="Please enter minutes" />
+                </p>
+
+                <p>
+                    <label>Seconds:</label>
+                    <input id="InpSeconds" type="number" min="0" max="60" name="" value="" placeholder="Please enter seconds" />
+                </p>
+
+                <p>
+                    <label>Country:</label>
+                    <input id="InpCountry" type="text" name="" value="" placeholder="Please enter your country" />
+                </p>
+
+                <button id="CreateBtn" type="submit" class="btn btn-default" onclick="Submit()">Create Clock</button>
+            </div>
+
+        </div>
+
+        <div class="row" id="Row2">
+            <div class="col">
+                <div id="EmptyDiv"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
