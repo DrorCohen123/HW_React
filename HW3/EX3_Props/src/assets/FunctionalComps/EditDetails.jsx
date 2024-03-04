@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from '@mui/material/TextField';
 
 import { useState, useEffect } from 'react';
 
@@ -34,19 +36,16 @@ export default function EditDetails(props) {
         userNameInp: { value: '', error: false, helperText: '' },
         passwordInp: { value: '', error: false, helperText: '' },
         passValidationInp: { value: '', error: false, helperText: '' },
-        pictureInp: { value: '', error: false, helperText: '' },
+        //pictureInp: { value: '', error: false, helperText: '' },
         firstNameInp: { value: '', error: false, helperText: '' },
         lastNameInp: { value: '', error: false, helperText: '' },
         emailInp: { value: '', error: false, helperText: '' },
         birthDateInp: { value: '', error: false, helperText: '' },
-
-        //Need to add cities!!
-
-        //cityInp: { value: '', error: false, helperText: '' },
-
+        cityInp: { value: '', error: false, helperText: '' },
         streetInp: { value: '', error: false, helperText: '' },
         homeNumber: { value: '', error: false, helperText: '' }
     });
+    const[cityInput, setCityInpE]=useState(oldUser.city);
 
     useEffect(() => {
         if (props.oldUser) {
@@ -56,10 +55,13 @@ export default function EditDetails(props) {
                 userNameInp: { ...prev.userNameInp, value: currentUser.userName },
                 passwordInp: { ...prev.passwordInp, value: currentUser.password },
                 passValidationInp: { ...prev.passValidationInp, value: currentUser.password },
+                //pictureInp: { ...prev.pictureInp, value: currentUser.picture},
                 firstNameInp: { ...prev.firstNameInp, value: currentUser.firstName },
                 lastNameInp: { ...prev.lastNameInp, value: currentUser.lastName },
                 emailInp: { ...prev.emailInp, value: currentUser.email },
                 birthDateInp: { ...prev.birthDateInp, value: currentUser.birthDate },
+                cityInp: { ...prev.cityInp, value: cityInput},
+
                 streetInp: { ...prev.streetInp, value: currentUser.street },
                 homeNumber: { ...prev.homeNumber, value: currentUser.homeNumber },
             }));
@@ -103,11 +105,12 @@ export default function EditDetails(props) {
             firstName: inputsE.firstNameInp.value,
             lastName: inputsE.lastNameInp.value,
             birthDate: inputsE.birthDateInp.value,
-            //city: inputsE.birthDateInp.value,
+            city: cityInput,
             street: inputsE.streetInp.value,
             homeNumber: inputsE.homeNumber.value,
         }
         EditUser(userEmail, updateDetails);
+        console.log(updateDetails.city);
         RestartEDForm();
         if (props.stateLogIn && props.stateLogIn.userName != "admin")
             props.setEdit(false);
@@ -125,6 +128,11 @@ export default function EditDetails(props) {
         }
         UpdateUserDetails();
     };
+    const handelCityChangeE  = (e) => {
+       
+        setCityInpE( e.target.value);
+        console.log(e.target.value);
+      };
 
     return (
 
@@ -185,6 +193,7 @@ export default function EditDetails(props) {
                                 patterntxt="The password should contain between 7 and 12 characters with at least one special character, a capital letter and a number"
                                 statename="passwordInp"
                                 value={inputsE.passwordInp.value}
+                               
                                 setInpFunc={setinputsE}
                                 fullWidth />
                         </Grid>
@@ -216,14 +225,11 @@ export default function EditDetails(props) {
                                 label="Image"
                                 type='file'
                                 variant="outlined"
-                                error={inputsE.pictureInp.error}
-                                helperText={inputsE.pictureInp.helperText}
                                 autoFocus={false}
                                 color='secondary'
                                 regex={/\.jpe?g$/i}
                                 patterntxt="Only 'JPG' or 'JPEG' files can be uploaded"
                                 statename="pictureInp"
-                                value={inputsE.pictureInp.value}
                                 setInpFunc={setinputsE}
                                 Pic={true}
                                 getUrl={setImageUrl}
@@ -311,6 +317,23 @@ export default function EditDetails(props) {
                         </Grid>
 
                         <Grid item xs={12}>
+                        
+                             <Autocomplete 
+                                    options={cities}                                    
+                                    renderInput={(params) => (
+                                        <TextField  required {...params} label="City" variant="standard" 
+                                        color="secondary" value={cityInput}
+                                         autoFocus={false} type='text'
+                                         onChange={(e)=>setCityInpE(e.target.value)}
+                                          onBlur={handelCityChangeE}/>
+                                    )}
+                                />
+
+                       
+                           
+                            
+                       
+       
 
                         </Grid>
 

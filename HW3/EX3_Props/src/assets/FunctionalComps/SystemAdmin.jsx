@@ -28,7 +28,7 @@ export default function SystemAdmin(props) {
             username: user.userName,
             fullname: user.firstName + ' ' + user.lastName,
             dOfBirth: user.birthDate,
-            address: user.street + ' ' + user.homeNumber, //+ ',' + user.userCity,
+            address: user.street + ' ' + user.homeNumber+', ' +user.city,
             email: user.email,
         }));
     };

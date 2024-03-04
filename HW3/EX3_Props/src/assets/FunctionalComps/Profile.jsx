@@ -21,23 +21,22 @@ export default function Profile(props) {
 
     const userFullName = user.firstName + " " + user.lastName;
     const userEmail = user.email;
-    const userAdress = user.street + ", " + user.homeNumber;
+    const userAdress = user.street + ", " + user.homeNumber+', '+ user.city;
     const userDate = user.birthDate;
     const imgSrc = user.picture;
+    
 
     const ShowEditComp = () => {
         setEdit(true);
     };
 
-    //const LogOutUser = (email) => {
-    //if (email === userEmail) {
-    //props.setLogIn("");
-    //}
-    //}
-
-    const LogOutUser = () => {
+    const LogOutUser = (email)=>() => {
+    if (email === userEmail) {
         props.setLogIn("");
-    };
+    }
+    }
+
+    
 
     if (!edit)
         return (
@@ -81,7 +80,7 @@ export default function Profile(props) {
                 <CardActions style={{ marginTop: 'auto', justifyContent: 'center', width: '100%' }}>
                     <Button size="small" color='secondary' onClick={ShowEditComp}>Update details</Button>
                     <Button size="small" color='secondary' href='https://games.yo-yoo.co.il/games_play.php?game=5176' target='blank'>To Play</Button>
-                    <Button size="small" color='error' onClick={LogOutUser}>Logout</Button>
+                    <Button size="small" color='error' onClick={LogOutUser(userEmail)}>Logout</Button>
                 </CardActions>
             </Card>
         );

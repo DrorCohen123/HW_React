@@ -8,6 +8,8 @@ import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from '@mui/material/TextField';
 
 import { useState } from 'react';
 
@@ -38,14 +40,12 @@ export default function Register(props) {
         firstNameInp: { value: '', error: false, helperText: '' },
         lastNameInp: { value: '', error: false, helperText: '' },
         emailInp: { value: '', error: false, helperText: '' },
-        birthDateInp: { value: '', error: false, helperText: '' },
-
-        //------------------------Need add cities!!----------------------//
-        //Inp: { value: '', error: false, helperText: '' },
-
+        birthDateInp: { value: '', error: false, helperText: '' },        
+        //cityInp: {''},
         streetInp: { value: '', error: false, helperText: '' },
         homeNumber: { value: '', error: false, helperText: '' },
     });
+    const[cityI, setCity]=useState('');
 
     const togglePage = () => {
         props.setShowRegister(!props.showRegister);
@@ -54,7 +54,10 @@ export default function Register(props) {
         for (let key in inputsR) {
             setinputsR(prev => ({ ...prev, [key]: { value: '', error: false, helperText: '' } }))
         }
+        setCity("");
+
     }
+
 
 
     const RegisterUser = () => {
@@ -66,10 +69,11 @@ export default function Register(props) {
             lastName: inputsR.lastNameInp.value,
             email: inputsR.emailInp.value,
             birthDate: inputsR.birthDateInp.value,
-            //city: inputsR.birthDateInp.value,
+            city: cityI,
             street: inputsR.streetInp.value,
             homeNumber: inputsR.homeNumber.value,
         }
+        //console.log(newUser.city);
         props.addUser(newUser);
         RestartRegisterForm();
     }
@@ -86,6 +90,14 @@ export default function Register(props) {
 
         RegisterUser();
     };
+
+    const handelCityChange  = (e) => {
+       
+        setCity( e.target.value);
+        console.log(e.target.value);
+      };
+
+  
 
     return (
 
@@ -269,6 +281,19 @@ export default function Register(props) {
                         </Grid>
 
                         <Grid item xs={12}>
+                            <item>
+                            <Autocomplete 
+                                    options={cities}
+                                                                        
+                                    renderInput={(params) => (
+                                        <TextField value={cityI} required {...params} label="City" variant="standard" 
+                                        color="secondary" onChange={(e)=>setCity(e.target.value)}
+                                          autoFocus={false} type='text'  onBlur={handelCityChange}                                      
+                                         />
+                                    )}/>
+                            </item>
+                                                    
+                     
 
                         </Grid>
 
